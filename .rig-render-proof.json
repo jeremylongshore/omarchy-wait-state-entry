@@ -1,0 +1,12 @@
+{
+  "fingerprint": "234f5d1285bbadb79392bf5e52b087cbb8f314c0f408a7b2679c481a633c7926",
+  "rig": "intent-ops-buzz/omarchy-rig",
+  "realShellLoaded": true,
+  "qmlWarningCount": 0,
+  "interpreterShadowPath": "/tmp/omarchy-no-interpreters-first",
+  "screenshot": "preview.png",
+  "screenshotSha256": "5750030917a94c3b446c3cb789a9e0008d89fb0c18ab724c638d024391ce2d58",
+  "screenshotBytes": 67550,
+  "renderedAtEpoch": 1787445789,
+  "renderedAt": "2026-08-23T00:43:09Z"
+}

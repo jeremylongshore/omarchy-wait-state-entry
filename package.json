@@ -1,0 +1,9 @@
+{
+  "name": "omarchy-wait-state-entry",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Offline test harness for the Wait State PSI saturation plugin",
+  "scripts": {
+    "test": "node --test tests/*.test.js"
+  }
+}

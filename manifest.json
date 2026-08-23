@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "id": "io.github.jeremylongshore.wait-state",
+  "name": "Wait State",
+  "version": "1.0.0",
+  "author": "Jeremy Longshore",
+  "license": "MIT",
+  "description": "Shows when work is stalled on CPU, memory, or I/O using Linux pressure stall information, with live severity, six hours of bounded history, and plain-language diagnostics.",
+  "kinds": [
+    "service",
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "service": "Service.qml",
+    "barWidget": "BarWidget.qml"
+  },
+  "barWidget": {
+    "displayName": "Wait State",
+    "description": "CPU usage says the machine is busy. Wait State says whether useful work is stuck waiting for CPU, memory, or I/O. The bar shows the worst current bottleneck; the panel carries short and long pressure windows, full-stall visibility, persistent history, and an honest explanation of what each signal can prove.",
+    "category": "System",
+    "aliases": [
+      "wait-state",
+      "psi",
+      "pressure",
+      "stall-monitor",
+      "saturation"
+    ],
+    "allowMultiple": false,
+    "defaults": {
+      "pollInterval": "5 seconds",
+      "barResource": "Worst",
+      "historyWindow": "1 hour",
+      "warningPercent": 5,
+      "criticalPercent": 20
+    },
+    "schema": [
+      {
+        "key": "pollInterval",
+        "type": "enum",
+        "label": "Refresh interval",
+        "options": [
+          "2 seconds",
+          "5 seconds",
+          "10 seconds",
+          "30 seconds"
+        ],
+        "defaultValue": "5 seconds",
+        "description": "How often to read the three fixed /proc/pressure files. History is sampled at most once every 15 seconds regardless of this setting."
+      },
+      {
+        "key": "barResource",
+        "type": "enum",
+        "label": "Bar resource",
+        "options": [
+          "Worst",
+          "CPU",
+          "Memory",
+          "I/O"
+        ],
+        "defaultValue": "Worst",
+        "description": "Worst follows the resource with the highest current avg10 partial-stall percentage."
+      },
+      {
+        "key": "historyWindow",
+        "type": "enum",
+        "label": "Default history",
+        "options": [
+          "15 minutes",
+          "1 hour",
+          "6 hours"
+        ],
+        "defaultValue": "1 hour",
+        "description": "Initial time range for the pressure history chart."
+      },
+      {
+        "key": "warningPercent",
+        "type": "integer",
+        "label": "Warning threshold",
+        "defaultValue": 5,
+        "min": 1,
+        "max": 50,
+        "description": "Partial-stall avg10 percentage that marks pressure as elevated. This is a display threshold, not a universal kernel limit."
+      },
+      {
+        "key": "criticalPercent",
+        "type": "integer",
+        "label": "Critical threshold",
+        "defaultValue": 20,
+        "min": 2,
+        "max": 90,
+        "description": "Partial-stall avg10 percentage that marks pressure as severe. It is always normalized above the warning threshold."
+      }
+    ]
+  }
+}
