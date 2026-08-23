@@ -1,3 +1,5 @@
+<p align="center"><img src="assets/banner.svg" alt="Wait State" width="100%"></p>
+
 # Wait State
 
 CPU usage tells you the machine is busy. Wait State tells you whether your work

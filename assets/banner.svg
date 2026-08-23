@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 340" width="1200" height="340" role="img" aria-label="Wait State. See when work is stalled, not merely busy. CPU, memory, and I/O pressure history shown as kernel signal traces.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#10151d"/>
+      <stop offset="1" stop-color="#080b10"/>
+    </linearGradient>
+    <linearGradient id="pressure" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#55b9c6"/>
+      <stop offset="0.58" stop-color="#e7ad52"/>
+      <stop offset="1" stop-color="#e2645a"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.15" cy="0.16" r="0.68">
+      <stop offset="0" stop-color="#55b9c6" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#55b9c6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="340" fill="url(#bg)"/>
+  <rect width="1200" height="340" fill="url(#glow)"/>
+
+  <!-- Identity: an instrument panel, not another utilization gauge. -->
+  <text x="68" y="132" font-family="'JetBrains Mono','Cascadia Mono',monospace" font-size="68" font-weight="700" letter-spacing="5" fill="#edf1f5">WAIT STATE</text>
+  <rect x="72" y="158" width="386" height="4" fill="url(#pressure)"/>
+  <text x="68" y="204" font-family="'JetBrains Mono','Cascadia Mono',monospace" font-size="23" letter-spacing="0.5" fill="#c4cbd3">See when work is stalled, not merely busy.</text>
+  <text x="68" y="240" font-family="'JetBrains Mono','Cascadia Mono',monospace" font-size="15" letter-spacing="1" fill="#76818d">CPU · MEMORY · I/O · 6 HOURS OF PRESSURE HISTORY</text>
+
+  <!-- A PSI strip chart. The flat baseline breaking into a sharp wait spike is
+       the banner's signature and expresses the product's actual measurement. -->
+  <g transform="translate(650,48)">
+    <rect width="482" height="244" rx="5" fill="#111821" stroke="#2b3541" stroke-width="1.5"/>
+    <g stroke="#25303b" stroke-width="1">
+      <path d="M24 52 H458"/><path d="M24 103 H458"/><path d="M24 154 H458"/><path d="M24 205 H458"/>
+      <path d="M132 24 V220"/><path d="M241 24 V220"/><path d="M350 24 V220"/>
+    </g>
+    <g font-family="'JetBrains Mono','Cascadia Mono',monospace" font-size="11" letter-spacing="1">
+      <text x="24" y="22" fill="#74808c">KERNEL PRESSURE / AVG10</text>
+      <text x="458" y="22" text-anchor="end" fill="#e7ad52">CPU  8.1% WAIT</text>
+      <text x="24" y="236" fill="#58636e">−60m</text>
+      <text x="241" y="236" text-anchor="middle" fill="#58636e">−30m</text>
+      <text x="458" y="236" text-anchor="end" fill="#58636e">NOW</text>
+    </g>
+    <path d="M24 192 L50 190 L75 193 L101 187 L126 191 L151 188 L177 190 L202 181 L227 187 L252 180 L278 184 L303 172 L328 178 L349 160 L369 166 L389 124 L405 151 L421 78 L436 112 L447 61 L458 84"
+          fill="none" stroke="url(#pressure)" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M24 192 L50 190 L75 193 L101 187 L126 191 L151 188 L177 190 L202 181 L227 187 L252 180 L278 184 L303 172 L328 178 L349 160 L369 166 L389 124 L405 151 L421 78 L436 112 L447 61 L458 84 L458 205 L24 205 Z"
+          fill="url(#pressure)" opacity="0.08"/>
+    <circle cx="458" cy="84" r="5" fill="#e7ad52"/>
+  </g>
+</svg>
