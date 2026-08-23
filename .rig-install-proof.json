@@ -1,0 +1,18 @@
+{
+  "repository": "https://github.com/jeremylongshore/omarchy-wait-state-entry.git",
+  "commit": "01ff9d7c907a8b85fe8073bbbb60ad2f5366afea",
+  "rig": "intent-ops-buzz/omarchy-rig",
+  "command": "omarchy plugin add https://github.com/jeremylongshore/omarchy-wait-state-entry.git --enable --yes",
+  "exitCode": 0,
+  "installedPath": "/root/.config/omarchy/plugins/io.github.jeremylongshore.wait-state",
+  "enabledPluginEntries": 1,
+  "enabledBarEntries": 1,
+  "freshStateBytes": 34617,
+  "freshHistoryPoints": 393,
+  "qmlWarningCount": 0,
+  "screenshot": "preview.png",
+  "screenshotSha256": "aff938c949b995fe5dcc4bf83c105f4ec49859d5f2f671fb904857ef203eff71",
+  "screenshotBytes": 68172,
+  "verifiedAtEpoch": 1787452227,
+  "verifiedAt": "2026-08-23T02:30:27Z"
+}

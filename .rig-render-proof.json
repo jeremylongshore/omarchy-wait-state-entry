@@ -4,9 +4,9 @@
   "realShellLoaded": true,
   "qmlWarningCount": 0,
   "interpreterShadowPath": "/tmp/omarchy-no-interpreters-first",
-  "screenshot": "preview.png",
-  "screenshotSha256": "5750030917a94c3b446c3cb789a9e0008d89fb0c18ab724c638d024391ce2d58",
-  "screenshotBytes": 67550,
-  "renderedAtEpoch": 1787445789,
-  "renderedAt": "2026-08-23T00:43:09Z"
+  "screenshot": "assets/preview-render.png",
+  "screenshotSha256": "7b093e82a257d287b23afd64fe51285694f76f83213d2a9f8fc65f6683097a02",
+  "screenshotBytes": 68014,
+  "renderedAtEpoch": 1787452320,
+  "renderedAt": "2026-08-23T02:32:00Z"
 }

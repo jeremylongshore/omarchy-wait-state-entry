@@ -12,6 +12,9 @@ the panel.
 
 ![Wait State panel showing CPU, memory, and I/O pressure](preview.png)
 
+The screenshot above was captured from the public repository after the exact
+install command below completed on the Buzz production rig.
+
 ## What it answers
 
 Traditional monitors report utilization: how much CPU or memory is in use. A
