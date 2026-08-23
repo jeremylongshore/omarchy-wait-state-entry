@@ -35,8 +35,9 @@ is fine; one that implies verification it did not do is not.
 
 - **No runtime dependency.** A stock Omarchy install has no node, python or ruby
   on the graphical session PATH, so a plugin that shells out to one installs
-  cleanly and then silently never populates. Quickshell plus `curl` is the
-  stack; `jq` is fine because Omarchy ships it.
+  cleanly and then silently never populates. Quickshell plus a fixed
+  Bash/coreutils procfs reader is the runtime stack. Wait State performs no
+  network requests.
 - **Untrusted text is bounded.** Anything from a network response or another
   program renders as `Text.PlainText`, with a width constraint *and* an `elide`
   or `wrapMode`. Either alone is a no-op.

@@ -1,0 +1,5 @@
+node_modules/
+render.png
+*.tmp
+*.swp
+.DS_Store

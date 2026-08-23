@@ -19,3 +19,7 @@ Nothing yet.
 - Configurable polling and display thresholds.
 - Keyboard and pointer navigation, truthful unavailable states, and IPC refresh.
 - Offline parser, classification, history, bounds, and failure-path tests.
+- Production Buzz receipts for static validation, interpreter-shadowed real-shell
+  rendering, and exact public-URL installation.
+- SVG banner, installed-copy screenshot, support policy, code ownership, and
+  repository-specific agent guidance.
