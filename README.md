@@ -15,6 +15,8 @@ the panel.
 The screenshot above was captured from the public repository after the exact
 install command below completed on the Buzz production rig.
 
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/U5S225PTME)
+
 ## What it answers
 
 Traditional monitors report utilization: how much CPU or memory is in use. A
