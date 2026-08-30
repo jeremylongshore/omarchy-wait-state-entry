@@ -1,0 +1,38 @@
+{
+  "fingerprint": "9db8bd2672b2a9bbb01fc0aaae04a47406f7de2f33c997d1d52b40126a512736",
+  "sourceCommit": "ffb79443105c737c7972b418ab88608e33cb2bef",
+  "sourceDirty": false,
+  "sourcePackageSha256": "4baeff4e475d9cbb18007e9290543101df533c4da848a02e2b1e7bfd89f82c63",
+  "remotePackageSha256": "4baeff4e475d9cbb18007e9290543101df533c4da848a02e2b1e7bfd89f82c63",
+  "rig": "intent-ops-buzz/omarchy-rig",
+  "runId": "wait-state-3944326",
+  "rawShellLogSha256": "94e666674445aa9d2286a934bb06483f92258a36eeb122105d789e7979b65a83",
+  "packageBoundary": "runtime tree only; receipts, tests, developer scripts, reports, and preview excluded",
+  "evidenceBoundary": "isolated real Omarchy shell and unchanged QML under a dedicated headless compositor; bounded recent history through the production state parser; deterministic PSI through the unchanged fixed procfs reader; live IPC toggle; direct full-frame grim capture with no crop or image post-processing",
+  "fixture": "rig-only deterministic PSI and bounded recent history; no production fixture branch",
+  "primaryAction": "live IPC opened the populated pressure panel",
+  "storyEvidence": {
+    "resourceCount": 3,
+    "historySamples": 49,
+    "currentResource": "cpu",
+    "currentPressure": 24.8,
+    "severity": "critical",
+    "allPrimaryRowsExpected": true
+  },
+  "outputScale": 1.25,
+  "visualInspection": {
+    "status": "approved",
+    "previewSha256": "115d9e39ccbe31345be09229601586d5134009e8459f544e4fa1871b53140da5",
+    "inspector": "jeremylongshore",
+    "inspectedAt": "2026-08-30T00:35:13Z",
+    "checks": [
+      "product value visible at marketplace scale",
+      "no primary content clipped",
+      "plugin-specific visual identity"
+    ]
+  },
+  "previewSha256": "115d9e39ccbe31345be09229601586d5134009e8459f544e4fa1871b53140da5",
+  "dimensions": "1280 x 720",
+  "nonblackCoverage": 0.48393,
+  "capturedAt": "2026-08-30T00:35:03Z"
+}
