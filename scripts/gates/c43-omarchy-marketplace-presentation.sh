@@ -26,7 +26,14 @@ MANIFEST="$GATE_TREE_DIR/manifest.json"
 NAME=$(/usr/bin/jq -r '.name // ""' "$MANIFEST" 2>/dev/null)
 PLUGIN_ID=$(/usr/bin/jq -r '.id // ""' "$MANIFEST" 2>/dev/null)
 DESCRIPTION=$(/usr/bin/jq -r '.description // ""' "$MANIFEST" 2>/dev/null)
+BAR_DESCRIPTION=$(/usr/bin/jq -r '.barWidget.description // ""' "$MANIFEST" 2>/dev/null)
+HAS_BAR_WIDGET=$(/usr/bin/jq -r 'has("barWidget") and (.barWidget | type == "object")' "$MANIFEST" 2>/dev/null)
 DESC_LENGTH=$(/usr/bin/python3 - "$DESCRIPTION" <<'PY'
+import sys
+print(len(sys.argv[1]))
+PY
+)
+BAR_DESC_LENGTH=$(/usr/bin/python3 - "$BAR_DESCRIPTION" <<'PY'
 import sys
 print(len(sys.argv[1]))
 PY
@@ -41,6 +48,64 @@ FINDINGS=()
 if [[ "$DESC_LENGTH" != "500" ]]; then
   FINDINGS+=("manifest description uses $DESC_LENGTH/500 characters")
 fi
+if [[ "$HAS_BAR_WIDGET" == "true" && "$BAR_DESC_LENGTH" != "500" ]]; then
+  FINDINGS+=("barWidget description uses $BAR_DESC_LENGTH/500 characters")
+fi
+if [[ "$HAS_BAR_WIDGET" == "true" && "$DESCRIPTION" != "$BAR_DESCRIPTION" ]]; then
+  FINDINGS+=("manifest and barWidget descriptions tell different product stories")
+fi
+
+# Length alone is not copy quality. A submission description must identify the
+# product, explain what the user can see or do, and state a meaningful trust
+# boundary. These checks deliberately reject generic 500-character filler while
+# repo-specific contract tests pin the precise claims each plugin is allowed to
+# make.
+COPY_RESULT=$(DESCRIPTION="$DESCRIPTION" PLUGIN_NAME="$NAME" /usr/bin/python3 <<'PY'
+import os
+import re
+
+description = os.environ["DESCRIPTION"].strip()
+name = os.environ["PLUGIN_NAME"].strip()
+lower = description.casefold()
+findings = []
+
+if name and name.casefold() not in lower:
+    findings.append("description never names the plugin")
+
+sentences = [part.strip() for part in re.split(r"(?<=[.!?])\s+", description) if part.strip()]
+if len(sentences) < 4:
+    findings.append("description needs at least four readable sentences")
+if sentences and len(sentences[0]) < 50:
+    findings.append("opening sentence is too thin to establish the user outcome")
+
+surface_terms = ("bar", "panel", "pill", "widget")
+if not any(re.search(rf"\b{term}\b", lower) for term in surface_terms):
+    findings.append("description never explains the visible bar, panel, pill, or widget")
+
+interaction_terms = (
+    "open", "click", "select", "start", "copy", "install", "jump", "focus",
+    "mark", "refresh", "clear", "choose", "preview", "show", "shows", "see",
+    "sort", "scan", "reads", "switch", "count", "counts",
+)
+if not any(re.search(rf"\b{term}\w*\b", lower) for term in interaction_terms):
+    findings.append("description gives no concrete user interaction or visible behavior")
+
+boundary_terms = ("no ", "never ", "only ", "without ", "offline", "local", "private", "fixed ")
+if not any(term in lower for term in boundary_terms):
+    findings.append("description gives no privacy, network, data, or write boundary")
+
+banned = (
+    "cutting-edge", "game-changer", "game-changing", "revolutionary", "supercharge",
+    "seamless", "robust solution", "unlock your", "take your productivity to the next level",
+)
+present = [term for term in banned if term in lower]
+if present:
+    findings.append("description contains generic marketing filler: " + ", ".join(present))
+
+print("; ".join(findings))
+PY
+)
+[[ -n "$COPY_RESULT" ]] && FINDINGS+=("$COPY_RESULT")
 
 BANNER="$GATE_TREE_DIR/assets/banner.svg"
 if [[ ! -f "$BANNER" ]]; then
