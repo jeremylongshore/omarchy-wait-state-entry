@@ -7,6 +7,9 @@ practical rather than bureaucratic.
 
 ```bash
 npm test                          # offline suite, never touches the network
+npm run test:race                 # repeat under concurrent test scheduling
+npm run test:mutation             # require a 90% mutation score
+npm run audit                     # deterministic depth and hygiene audit
 scripts/run-plugin-gates.sh .     # the vendored gate lane
 ```
 
@@ -25,7 +28,8 @@ surface, or a shell string the engine rejects. If you have rig access:
 
 ```bash
 scripts/rig-verify.sh    # validate + qmllint against a fingerprint of the tree
-scripts/rig-render.sh    # load it into a running shell and screenshot it
+e2e/buzz.sh              # real service, state, panel, and direct screenshot
+scripts/approve-preview.sh # bind visual inspection to the exact preview hash
 ```
 
 If you do not, say so in the pull request. An unverified change that admits it

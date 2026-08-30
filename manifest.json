@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "id": "io.github.jeremylongshore.wait-state",
   "name": "Wait State",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "Jeremy Longshore",
   "license": "MIT",
-  "description": "Shows when work is stalled on CPU, memory, or I/O using Linux pressure stall information, with live severity, six hours of bounded history, and plain-language diagnostics.",
+  "description": "Wait State reveals when useful work is stalled on CPU, memory, or I/O, instead of mistaking high utilization for trouble. The bar follows the worst current Linux pressure signal; the panel separates 10-second, 1-minute, and 5-minute pressure, full stalls, severity, and six hours of bounded history. Plain-language guidance explains what each signal can prove without blaming a process. It reads only three fixed procfs files, stays offline, needs no credentials, and never changes your system state.",
   "kinds": [
     "service",
     "bar-widget"
@@ -16,7 +16,7 @@
   },
   "barWidget": {
     "displayName": "Wait State",
-    "description": "CPU usage says the machine is busy. Wait State says whether useful work is stuck waiting for CPU, memory, or I/O. The bar shows the worst current bottleneck; the panel carries short and long pressure windows, full-stall visibility, persistent history, and an honest explanation of what each signal can prove.",
+    "description": "Wait State reveals when useful work is stalled on CPU, memory, or I/O, instead of mistaking high utilization for trouble. The bar follows the worst current Linux pressure signal; the panel separates 10-second, 1-minute, and 5-minute pressure, full stalls, severity, and six hours of bounded history. Plain-language guidance explains what each signal can prove without blaming a process. It reads only three fixed procfs files, stays offline, needs no credentials, and never changes your system state.",
     "category": "System",
     "aliases": [
       "wait-state",

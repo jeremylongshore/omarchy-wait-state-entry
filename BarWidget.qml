@@ -88,6 +88,8 @@ BarWidget {
     fontFamily: root.bar ? root.bar.fontFamily : Style.font.family
     active: panelLoader.item ? panelLoader.item.isAlert === true : false
     tooltipText: panelLoader.item ? panelLoader.item.tooltip : "Wait State is starting"
+    Accessible.role: Accessible.Button
+    Accessible.name: root.opened ? "Close Wait State" : "Open Wait State"
 
     onPressed: function(mouseButton) {
       if (mouseButton === Qt.MiddleButton) root.refresh()

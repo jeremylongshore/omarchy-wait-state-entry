@@ -55,9 +55,11 @@ function parseMetric(line) {
   var parts = String(line || "").trim().split(/\s+/)
   if (parts.length !== 5 || (parts[0] !== "some" && parts[0] !== "full")) return null
   var out = emptyMetric()
+  var seen = {}
   for (var i = 1; i < parts.length; i++) {
     var pair = parts[i].split("=")
-    if (pair.length !== 2 || !(pair[0] in out)) return null
+    if (pair.length !== 2 || !(pair[0] in out) || seen[pair[0]]) return null
+    seen[pair[0]] = true
     var value = Number(pair[1])
     if (!isFinite(value) || value < 0) return null
     out[pair[0]] = pair[0] === "total" ? Math.floor(value) : round(value, 2)
@@ -262,6 +264,8 @@ function parseState(raw) {
   if (!text || text.length > MAX_STATE_CHARS) return { valid: false, history: [], selected: "cpu" }
   var data
   try { data = JSON.parse(text) } catch (e) { return { valid: false, history: [], selected: "cpu" } }
+  if (!data || typeof data !== "object" || Array.isArray(data))
+    return { valid: false, history: [], selected: "cpu" }
   var selected = RESOURCES.indexOf(data.selected) >= 0 ? data.selected : "cpu"
   return { valid: true, history: normalizeHistory(data.history), selected: selected }
 }

@@ -29,6 +29,7 @@ Item {
   property var snapshot: Model.emptySnapshot(0)
   property var history: []
   property string selectedResource: "cpu"
+  property bool stateDirReady: false
   property bool stateLoaded: false
   property bool sampling: false
   property string lastError: ""
@@ -88,6 +89,7 @@ Item {
   }
 
   function persist() {
+    if (!root.stateDirReady || !root.stateLoaded) return
     root.lastPersistAt = Date.now()
     stateFile.setText(JSON.stringify({
       schemaVersion: 1,
@@ -137,16 +139,29 @@ Item {
 
   Process {
     id: stateDirProc
-    command: ["mkdir", "-p", "--", root.stateDir]
+    command: ["install", "-d", "-m", "700", "--", root.stateDir]
+    onExited: function(code) {
+      root.stateDirReady = code === 0
+      if (!root.stateDirReady) {
+        root.stateLoaded = true
+        root.lastError = "state directory unavailable"
+        root.pressureChanged()
+        root.sample()
+      }
+    }
   }
 
   FileView {
     id: stateFile
-    path: root.statePath
+    path: root.stateDirReady ? root.statePath : ""
     atomicWrites: true
     printErrors: false
-    onLoaded: root.loadState(text())
-    onLoadFailed: root.loadState("")
+    onLoaded: {
+      if (root.stateDirReady) root.loadState(text())
+    }
+    onLoadFailed: {
+      if (root.stateDirReady) root.loadState("")
+    }
   }
 
   FileView {
@@ -166,5 +181,7 @@ Item {
   }
 
   Component.onCompleted: stateDirProc.running = true
-  Component.onDestruction: root.persist()
+  Component.onDestruction: {
+    if (root.stateDirReady && root.stateLoaded) root.persist()
+  }
 }

@@ -96,7 +96,7 @@ gate_resolve_tree() {
 }
 
 # List files to scan, relative to GATE_TREE_DIR, filtered by an egrep pattern
-# on the path. full mode: git-tracked files (fallback: find, .git excluded).
+# on the path. Full mode scans untracked, unignored files too.
 # diff mode: files added or modified vs the base branch.
 # Usage: gate_tree_files '\.(md|json|svg)$'
 # scripts/gates/** is excluded: a candidate repo may vendor this gate lane so
@@ -120,8 +120,43 @@ gate_tree_files() {
     # boundary anywhere in this pipeline. It also produced three false-cleans on
     # this operator's own trees.
     #
-    # c37's fingerprint() already had the right primitive; this adopts it.
-    ( cd "$GATE_TREE_DIR" && /usr/bin/find . -type f -not -path './.git/*' | /usr/bin/sed 's#^\./##' )
+    # Git-ignore is the boundary for generated/dependency content, not
+    # tracked-ness. After npm install, third-party README prose must not become
+    # a plugin-author finding; an unignored source file still must.
+    if /usr/bin/git -C "$GATE_TREE_DIR" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+      # One Git query for the whole tree. Calling check-ignore once per file
+      # turns a normal npm dependency tree into thousands of Git processes and
+      # makes every gate too slow to use. The sorted set difference preserves
+      # the exact same boundary while keeping the full suite practical.
+      local all ignored
+      all=$(mktemp -t gate-tree-all-XXXXXX)
+      ignored=$(mktemp -t gate-tree-ignored-XXXXXX)
+      # Root-level coverage, mutation, and report trees are generated evidence,
+      # not authored plugin source. They are excluded even when a tool forgot
+      # to add them to .gitignore: Stryker copies the whole repository beneath
+      # .stryker-tmp and can multiply one finding into hundreds of synthetic
+      # blockers, while coverage/report HTML contains detector examples. Keep
+      # the prune list narrow and root-relative so an authored source directory
+      # with the same basename deeper in the tree is still scanned.
+      /usr/bin/find "$GATE_TREE_DIR" \
+        \( -path "$GATE_TREE_DIR/.git" \
+        -o -path "$GATE_TREE_DIR/node_modules" \
+        -o -path "$GATE_TREE_DIR/.stryker-tmp" \
+        -o -path "$GATE_TREE_DIR/coverage" \
+        -o -path "$GATE_TREE_DIR/reports" \
+        -o -path "$GATE_TREE_DIR/.nyc_output" \) -prune \
+        -o -type f -printf '%P\n' | LC_ALL=C /usr/bin/sort > "$all"
+      /usr/bin/git -C "$GATE_TREE_DIR" check-ignore --stdin < "$all" 2>/dev/null \
+        | LC_ALL=C /usr/bin/sort > "$ignored" || true
+      /usr/bin/comm -23 "$all" "$ignored"
+      rm -f "$all" "$ignored"
+    else
+      ( cd "$GATE_TREE_DIR" && /usr/bin/find . \
+          \( -path './.git' -o -path './node_modules' \
+          -o -path './.stryker-tmp' -o -path './coverage' \
+          -o -path './reports' -o -path './.nyc_output' \) -prune \
+          -o -type f -print | /usr/bin/sed 's#^\./##' )
+    fi
   else
     /usr/bin/git -C "$GATE_TREE_DIR" diff "$GATE_TREE_BASE..HEAD" --name-only --diff-filter=AM 2>/dev/null
   fi | /usr/bin/grep -E "$pat" \

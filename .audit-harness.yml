@@ -1,0 +1,4 @@
+# Wait State is a QML frontend with an offline JavaScript model. Pin the
+# deterministic classifier residue explicitly.
+classify_pins:
+  - frontend

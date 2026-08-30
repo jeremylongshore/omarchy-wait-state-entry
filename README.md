@@ -12,8 +12,10 @@ the panel.
 
 ![Wait State panel showing CPU, memory, and I/O pressure](preview.png)
 
-The screenshot above was captured from the public repository after the exact
-install command below completed on the Buzz production rig.
+The screenshot above is a direct full-frame capture from a real isolated
+Omarchy shell on the Buzz production rig. A bounded rig-only PSI fixture drives
+the unchanged procfs reader and state parser so the same complete product story
+is reproducible without leaking host pressure or inherited history.
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/U5S225PTME)
 
@@ -117,14 +119,20 @@ Kernel documentation:
 
 ```bash
 npm test
+npm run test:race
+npm run test:mutation
+npm run audit
 bash scripts/run-plugin-gates.sh .
 bash scripts/rig-verify.sh .
-bash scripts/rig-render.sh . /tmp/wait-state.png
+bash e2e/buzz.sh
+bash scripts/approve-preview.sh
 ```
 
-Static validation and `qmllint` do not prove the plugin loads. The render step
-starts a real headless Omarchy shell, opens the panel, captures it, and treats
-every plugin-sourced QML warning as a finding.
+Static validation and `qmllint` do not prove the plugin loads. The E2E step
+starts an isolated real Omarchy shell, exercises the production reader and
+state parser, opens the panel, captures a direct 16:9 frame, and treats every
+plugin-sourced QML warning as a finding. Visual approval is recorded only for
+the exact preview hash that was inspected.
 
 ## Remove
 
