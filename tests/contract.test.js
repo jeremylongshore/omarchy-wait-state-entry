@@ -47,8 +47,14 @@ test("marketplace copy and authored Wait State banner are release artifacts", ()
   const manifest = JSON.parse(read("manifest.json"))
   assert.equal(manifest.description.length, 500)
   assert.equal(manifest.barWidget.description.length, 500)
-  assert.match(manifest.description, /six hours of bounded history/)
-  assert.match(manifest.description, /stays offline/)
+  assert.equal(manifest.description, manifest.barWidget.description)
+  for (const claim of [
+    "CPU, memory, and I/O pressure stalls", "worst current source", "pinned choice",
+    "15-minute, 1-hour, or 6-hour history", "avg10, avg60, avg300",
+    "full-stall data when available", "three fixed procfs files",
+    "bounded local plugin history",
+    "No network, credentials, telemetry, process control, or system configuration change"
+  ]) assert.match(manifest.description, new RegExp(claim))
   const banner = read("assets/banner.svg")
   assert.match(banner, /<title>Wait State<\/title>/)
   assert.match(banner, /KERNEL PRESSURE \/ AVG10/)

@@ -5,7 +5,7 @@
   "version": "1.1.0",
   "author": "Jeremy Longshore",
   "license": "MIT",
-  "description": "Wait State reveals when useful work is stalled on CPU, memory, or I/O, instead of mistaking high utilization for trouble. The bar follows the worst current Linux pressure signal; the panel separates 10-second, 1-minute, and 5-minute pressure, full stalls, severity, and six hours of bounded history. Plain-language guidance explains what each signal can prove without blaming a process. It reads only three fixed procfs files, stays offline, needs no credentials, and never changes your system state.",
+  "description": "Wait State shows CPU, memory, and I/O pressure stalls, so high utilization is not mistaken for blocked work. Its bar follows the worst current source now or your pinned choice. Select a resource and 15-minute, 1-hour, or 6-hour history to see avg10, avg60, avg300, full-stall data when available, severity, and resource-level guidance. It reads only three fixed procfs files and writes bounded local plugin history. No network, credentials, telemetry, process control, or system configuration change.",
   "kinds": [
     "service",
     "bar-widget"
@@ -16,7 +16,7 @@
   },
   "barWidget": {
     "displayName": "Wait State",
-    "description": "Wait State reveals when useful work is stalled on CPU, memory, or I/O, instead of mistaking high utilization for trouble. The bar follows the worst current Linux pressure signal; the panel separates 10-second, 1-minute, and 5-minute pressure, full stalls, severity, and six hours of bounded history. Plain-language guidance explains what each signal can prove without blaming a process. It reads only three fixed procfs files, stays offline, needs no credentials, and never changes your system state.",
+    "description": "Wait State shows CPU, memory, and I/O pressure stalls, so high utilization is not mistaken for blocked work. Its bar follows the worst current source now or your pinned choice. Select a resource and 15-minute, 1-hour, or 6-hour history to see avg10, avg60, avg300, full-stall data when available, severity, and resource-level guidance. It reads only three fixed procfs files and writes bounded local plugin history. No network, credentials, telemetry, process control, or system configuration change.",
     "category": "System",
     "aliases": [
       "wait-state",
