@@ -1,12 +1,12 @@
 {
-  "fingerprint": "9db8bd2672b2a9bbb01fc0aaae04a47406f7de2f33c997d1d52b40126a512736",
-  "sourceCommit": "ffb79443105c737c7972b418ab88608e33cb2bef",
+  "fingerprint": "4ff89837b6f0b9e3029dc8d3e1dcbee7bfb9fe86936af79fb7729822852f25dc",
+  "sourceCommit": "cf6c42efd5fab1729e7e6f7f86a2afbd98769312",
   "sourceDirty": false,
-  "sourcePackageSha256": "4baeff4e475d9cbb18007e9290543101df533c4da848a02e2b1e7bfd89f82c63",
-  "remotePackageSha256": "4baeff4e475d9cbb18007e9290543101df533c4da848a02e2b1e7bfd89f82c63",
+  "sourcePackageSha256": "295b1a6ef5cc07a7e530bbb80e0ac796fa0dce22f93741ba1d51cd8c315410fc",
+  "remotePackageSha256": "295b1a6ef5cc07a7e530bbb80e0ac796fa0dce22f93741ba1d51cd8c315410fc",
   "rig": "intent-ops-buzz/omarchy-rig",
-  "runId": "wait-state-3944326",
-  "rawShellLogSha256": "94e666674445aa9d2286a934bb06483f92258a36eeb122105d789e7979b65a83",
+  "runId": "wait-state-3181922",
+  "rawShellLogSha256": "1138435e3b40ab7187430c50659b49e652300366e0a98fc5c488764663d78396",
   "packageBoundary": "runtime tree only; receipts, tests, developer scripts, reports, and preview excluded",
   "evidenceBoundary": "isolated real Omarchy shell and unchanged QML under a dedicated headless compositor; bounded recent history through the production state parser; deterministic PSI through the unchanged fixed procfs reader; live IPC toggle; direct full-frame grim capture with no crop or image post-processing",
   "fixture": "rig-only deterministic PSI and bounded recent history; no production fixture branch",
@@ -22,17 +22,17 @@
   "outputScale": 1.25,
   "visualInspection": {
     "status": "approved",
-    "previewSha256": "115d9e39ccbe31345be09229601586d5134009e8459f544e4fa1871b53140da5",
+    "previewSha256": "72ae1c9884794751efe0d2235da1bfda331d0f46413994dff9075197dc6eec57",
     "inspector": "jeremylongshore",
-    "inspectedAt": "2026-08-30T00:35:13Z",
+    "inspectedAt": "2026-08-31T21:55:24Z",
     "checks": [
       "product value visible at marketplace scale",
       "no primary content clipped",
       "plugin-specific visual identity"
     ]
   },
-  "previewSha256": "115d9e39ccbe31345be09229601586d5134009e8459f544e4fa1871b53140da5",
+  "previewSha256": "72ae1c9884794751efe0d2235da1bfda331d0f46413994dff9075197dc6eec57",
   "dimensions": "1280 x 720",
   "nonblackCoverage": 0.48393,
-  "capturedAt": "2026-08-30T00:35:03Z"
+  "capturedAt": "2026-08-31T21:55:12Z"
 }
