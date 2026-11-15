@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "io.github.jeremylongshore.wait-state",
   "name": "Wait State",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "author": "Jeremy Longshore",
   "license": "MIT",
   "description": "Wait State shows CPU, memory, and I/O pressure stalls, so high utilization is not mistaken for blocked work. Its bar follows the worst current source now or your pinned choice. Select a resource and 15-minute, 1-hour, or 6-hour history to see avg10, avg60, avg300, full-stall data when available, severity, and resource-level guidance. It reads only three fixed procfs files and writes bounded local plugin history. No network, credentials, telemetry, process control, or system configuration change.",
