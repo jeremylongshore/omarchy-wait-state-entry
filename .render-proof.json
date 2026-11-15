@@ -1,12 +1,12 @@
 {
-  "fingerprint": "4ff89837b6f0b9e3029dc8d3e1dcbee7bfb9fe86936af79fb7729822852f25dc",
-  "sourceCommit": "cf6c42efd5fab1729e7e6f7f86a2afbd98769312",
+  "fingerprint": "32e26c1a0cb4ed2d4e322a37d9252dc195eaeaf86d24eebf19ad7e68228473b4",
+  "sourceCommit": "82f6bd7cd869e7536b0742ca61688db714005c0f",
   "sourceDirty": false,
-  "sourcePackageSha256": "295b1a6ef5cc07a7e530bbb80e0ac796fa0dce22f93741ba1d51cd8c315410fc",
-  "remotePackageSha256": "295b1a6ef5cc07a7e530bbb80e0ac796fa0dce22f93741ba1d51cd8c315410fc",
+  "sourcePackageSha256": "69528d4f9f498c1c4bd3acdb5304ebb2cc7db805bededaa916bb0f50050b836f",
+  "remotePackageSha256": "69528d4f9f498c1c4bd3acdb5304ebb2cc7db805bededaa916bb0f50050b836f",
   "rig": "intent-ops-buzz/omarchy-rig",
-  "runId": "wait-state-3181922",
-  "rawShellLogSha256": "1138435e3b40ab7187430c50659b49e652300366e0a98fc5c488764663d78396",
+  "runId": "wait-state-192029",
+  "rawShellLogSha256": "dd60bcf5c6bf904fe5906a8843f6688ce3078c87611e364e639dc542ef758510",
   "packageBoundary": "runtime tree only; receipts, tests, developer scripts, reports, and preview excluded",
   "evidenceBoundary": "isolated real Omarchy shell and unchanged QML under a dedicated headless compositor; bounded recent history through the production state parser; deterministic PSI through the unchanged fixed procfs reader; live IPC toggle; direct full-frame grim capture with no crop or image post-processing",
   "fixture": "rig-only deterministic PSI and bounded recent history; no production fixture branch",
@@ -22,17 +22,17 @@
   "outputScale": 1.25,
   "visualInspection": {
     "status": "approved",
-    "previewSha256": "72ae1c9884794751efe0d2235da1bfda331d0f46413994dff9075197dc6eec57",
-    "inspector": "jeremylongshore",
-    "inspectedAt": "2026-08-31T21:55:24Z",
+    "previewSha256": "6a03ded0f155eeabec58f4b0649b0b0fd87965efac30a3178fc1181c7225b729",
+    "inspector": "Claude (agent) for jeremylongshore",
+    "inspectedAt": "2026-11-15T09:30:41Z",
     "checks": [
       "product value visible at marketplace scale",
       "no primary content clipped",
       "plugin-specific visual identity"
     ]
   },
-  "previewSha256": "72ae1c9884794751efe0d2235da1bfda331d0f46413994dff9075197dc6eec57",
+  "previewSha256": "6a03ded0f155eeabec58f4b0649b0b0fd87965efac30a3178fc1181c7225b729",
   "dimensions": "1280 x 720",
   "nonblackCoverage": 0.48393,
-  "capturedAt": "2026-08-31T21:55:12Z"
+  "capturedAt": "2026-11-15T09:30:32Z"
 }
